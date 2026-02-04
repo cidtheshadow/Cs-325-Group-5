@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FAQs • Tesla Stock Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #3b2560, #1e1233);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    nav .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* CONTENT */
+    .container {
+      flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #eee;
+    }
+
+    .muted {
+      opacity: 0.7;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">tesla predictor</div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/faq">FAQs</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>FAQs</h1>
+
+    <div class="card">
+      <h2>📌 What is this project?</h2>
+      <p>
+        This is a Tesla (TSLA) stock price prediction web application built as a
+        <b>college final-year project</b>. It uses technical indicators like
+        SMA (Simple Moving Averages) and volatility to estimate short-term price bias.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🤖 Is this real Machine Learning?</h2>
+      <p>
+        The project uses data-driven statistical logic inspired by ML concepts
+        such as trend detection and volatility modeling.  
+        It is designed for <b>educational demonstration</b>, not real trading.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Is this financial advice?</h2>
+      <p>
+        No. This project is strictly for learning purposes.
+        Stock markets are risky and predictions can be inaccurate.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>💱 Why are prices shown in INR?</h2>
+      <p>
+        Tesla trades in USD. For Indian users, prices are converted
+        to INR using an approximate exchange rate, while calculations
+        remain in the base currency to avoid distortion.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>👨‍💻 Team Details</h2>
+      <p>
+        <b>Team Name:</b> Team Franx<br>
+        <b>Team:</b> Tanush Singla, Yashas Garg and Jiya Arora <br>
+        <b>Institute:</b> SLIET (Sant Longowal Institute of Engineering & Technology)<br>
+        <b>Semester:</b> 6th Semester (Computer Science)<br>
+        <b>Purpose:</b> College Final Year Project
+      </p>
+      <p class="muted">
+        Built with Python, Flask, Yahoo Finance API, NumPy & Pandas.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Future Improvements</h2>
+      <p>
+        Planned upgrades include LSTM-based ML models, confidence scoring,
+        historical charts on frontend, and cloud deployment.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ by Team Franx • Educational Use Only
+  </footer>
+
+</body>
+</html>

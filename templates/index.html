@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tesla Stock Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #3b2560, #1e1233);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    nav .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+    }
+
+    nav .actions a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    nav .actions button {
+      margin-left: 20px;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 520px;
+      color: #cdbbff;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .hero button {
+      padding: 14px 40px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      background: #ffffff;
+      color: #2a1648;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* RESULT CARD */
+    .result-card {
+      margin-top: 35px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 25px 30px;
+      max-width: 420px;
+      width: 100%;
+      text-align: left;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .result-card h2 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .result-card p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+      color: #eee;
+    }
+
+    .muted {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">tesla predictor</div>
+    <div class="actions">
+      <a href="/faq">FAQs</a>
+      <button onclick="startApp()">START</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Tesla Stock Predictor</h1>
+    <p>
+      ML-based short-term trend prediction for Tesla (TSLA).  
+      Built as a college project for educational purposes only.
+    </p>
+
+    <button onclick="startApp()">Predict Now</button>
+
+    <!-- RESULT -->
+    <div id="result" class="result-card"></div>
+  </section>
+
+  <footer>
+    Made with ❤️ by Team Franx • Educational use only
+  </footer>
+
+  <script>
+    function startApp() {
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = "<p>⏳ Fetching live Tesla data...</p>";
+
+      fetch("/api/predict")
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            resultBox.innerHTML = "<p>❌ Prediction failed</p>";
+            return;
+          }
+
+          resultBox.innerHTML = `
+            <h2>📈 Prediction Result</h2>
+            <p><b>Current Price:</b> ₹${data.current_price}</p>
+            <p><b>Predicted Price:</b> ₹${data.predicted_price}</p>
+            <p><b>Expected Change:</b> ${data.change_percent}%</p>
+            <p class="muted">Base USD Price: $${data.usd_price}</p>
+            <p class="muted">${data.timestamp}</p>
+          `;
+        })
+        .catch(() => {
+          resultBox.innerHTML = "<p>⚠️ API error</p>";
+        });
+    }
+  </script>
+
+</body>
+</html>
